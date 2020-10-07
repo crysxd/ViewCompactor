@@ -13,16 +13,16 @@ In the `AndroidManifest.xml` set the soft input mode:
 In e.g. your Fragment apply the `ViewCompactor`:
 ```
 ViewCompactor(view as ViewGroup, reset = {
-            Timber.i("Reset")
-            TransitionManager.beginDelayedTransition(requireView() as ViewGroup, InstantAutoTransition(quickTransition = true, explode = true))
-            full.applyTo(constraintLayout)
-            textViewTitle.setTextAppearanceCompat(R.style.OctoTheme_TextAppearance_Title_Large)
-        }, compact = { round ->
-            Timber.i("Compact $round")
-            compact.applyTo(constraintLayout)
-            textViewTitle.setTextAppearanceCompat(R.style.OctoTheme_TextAppearance_Title)
-            false
-        })
+  Timber.i("Reset")
+  TransitionManager.beginDelayedTransition(requireView() as ViewGroup, InstantAutoTransition(quickTransition = true, explode = true))
+  full.applyTo(constraintLayout)
+  textViewTitle.setTextAppearanceCompat(R.style.OctoTheme_TextAppearance_Title_Large)
+}, compact = { round ->
+  Timber.i("Compact $round")
+  compact.applyTo(constraintLayout)
+  textViewTitle.setTextAppearanceCompat(R.style.OctoTheme_TextAppearance_Title)
+  false
+})
 ```
 
 Now whenever `view` gets resized the `ViewCompactor` measures the view and checks whether it will fit in the available size. If not, it will call the `compact` function 
