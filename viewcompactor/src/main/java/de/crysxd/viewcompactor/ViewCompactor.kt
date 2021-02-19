@@ -10,13 +10,15 @@ class ViewCompactor(
 ) {
 
     init {
+        var first = true
         view.addOnLayoutChangeListener { _, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
             val oldHeight = oldBottom - oldTop
             val oldWidth = oldRight - oldLeft
             val height = bottom - top
             val width = right - left
 
-            if (oldHeight != 0 && (height != oldHeight || width != oldWidth)) {
+            if (first || (oldHeight != 0 && (height != oldHeight || width != oldWidth))) {
+                first = false
                 var round = -1
                 reset()
 
